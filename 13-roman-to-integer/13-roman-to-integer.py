@@ -15,16 +15,19 @@ class Solution(object):
             "D":500,
             "M":1000
         }
-        
+        # current val equals the smallest value
+        curr_val = 1
         res = 0
-        len_s = len(s)
-     
         
-        for i in range(len_s - 1):
-            if dict1[s[i]] < dict1[s[i+1]]:
-                res -= dict1[s[i]]
-            if dict1[s[i]] >= dict1[s[i+1]]:
-                res += dict1[s[i]]
-        res += dict1[s[len_s - 1]]
-                
+        #loop numerals from end to start
+        for char in s[::-1]:
+            #if value represent by the numeral greater than or equals to current value
+            if dict1[char] >= curr_val:
+                #add the value to result
+                res += dict1[char]
+                #current value equals to the value represented by this numeral
+                curr_val = dict1[char]
+            else:
+                #subtract from the result
+                res -= dict1[char]
         return res
