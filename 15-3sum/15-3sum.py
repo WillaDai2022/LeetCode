@@ -9,6 +9,8 @@ class Solution:
         nums.sort()
         
         for index, n in enumerate(nums):
+            if n > 0:
+                break
             if index >0 and n == nums[index - 1]:
                 continue
             
