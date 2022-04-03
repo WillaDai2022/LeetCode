@@ -7,6 +7,9 @@ class Solution:
         
         for index, n in enumerate(nums):
             
+            if index > 0 and nums[index] == nums[index - 1]:
+                continue
+            
             left = index + 1
             right = len(nums) - 1
             
@@ -25,4 +28,6 @@ class Solution:
                     
                 else:
                     left += 1
+                    while nums[left] == nums[left - 1] and left < right:
+                        left += 1
         return min_sum
