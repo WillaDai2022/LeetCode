@@ -1,14 +1,12 @@
-class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        table = dict()
-        for i, num in enumerate(nums):
-            if target - num in table:
-                return [table[target - num], i]
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dict = {}
+        
+        for index, number in enumerate(nums):
+            
+            if (target-number) in dict:
+                return [dict[target-number], index]
             else:
-                table[num] = i
+                dict[number] = index
+                
         return []
