@@ -2,10 +2,9 @@ class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
         low = 0
         
-        for high in range(0, len(nums)):
-            
-            if nums[high] != val:
-                nums[low] = nums[high]
+        for num in nums:
+            if num != val:
+                nums[low] = num
                 low += 1
         
         return low
