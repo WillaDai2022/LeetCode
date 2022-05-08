@@ -17,15 +17,11 @@ class Solution:
                 list2 = list2.next
             curr = curr.next
             
-        while list1:
+        if list1:
             curr.next = list1
-            curr = curr.next
-            list1 = list1.next
             
-        while list2:
+        if list2:
             curr.next = list2
-            curr = curr.next
-            list2 = list2.next
             
         return dummy.next
             
