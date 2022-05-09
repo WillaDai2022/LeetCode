@@ -9,7 +9,7 @@ class Solution:
          return self.dfs(root, [])
         
     def dfs(self, node, list_1):
-        if node == None:
+        if not node:
             return list_1
         
         self.dfs(node.left, list_1)
