@@ -9,19 +9,4 @@ class Solution:
         if not root:
             return 0
         
-        queue = []
-        queue.append(root)
-        depth = 0
-        
-        while queue:
-            size = len(queue)
-            depth += 1
-            
-            while size:
-                curr = queue.pop(0)
-                size -= 1
-                if curr.left:
-                    queue.append(curr.left)
-                if curr.right:
-                    queue.append(curr.right)
-        return depth
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
