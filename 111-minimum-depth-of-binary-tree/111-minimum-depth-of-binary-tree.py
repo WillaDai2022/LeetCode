@@ -9,7 +9,24 @@ class Solution:
         if not root:
             return 0
         
-        if( not root.left or not root.right):
-            return 1 + max(self.minDepth(root.left), self.minDepth(root.right))
+        queue = []
+        queue.append(root)
+        depth = 1
         
-        return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
+        while queue:
+            size = len(queue)
+           
+            while size:
+                curr = queue.pop(0)
+                size -= 1
+                if not curr.left and not curr.right:
+                    return depth
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
+                    
+            depth += 1
+            
+                    
+ 
