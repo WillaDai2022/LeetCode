@@ -11,10 +11,11 @@ class Solution:
         
         queue = []
         queue.append(root)
-        depth = 1
+        depth = 0
         
         while queue:
             size = len(queue)
+            depth += 1
            
             while size:
                 curr = queue.pop(0)
@@ -26,7 +27,7 @@ class Solution:
                 if curr.right:
                     queue.append(curr.right)
                     
-            depth += 1
+            
             
                     
  
