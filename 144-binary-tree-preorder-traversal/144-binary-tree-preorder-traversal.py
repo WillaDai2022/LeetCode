@@ -8,16 +8,21 @@ class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        return self.preorder(root, [])
-    
-    def preorder(self, root, a_list):
-        if not root:
-            return []
+       
+        stack = [root]
+        result = []
         
-        a_list.append(root.val)
-        self.preorder(root.left, a_list)
-        self.preorder(root.right, a_list)
+        while stack:
+            curr = stack.pop()
+            result.append(curr.val)
+            
+            if curr.right:
+                stack.append(curr.right)
+            
+            if curr.left:
+                stack.append(curr.left)
+                
+        return result
         
-        return a_list
     
     
