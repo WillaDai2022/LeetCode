@@ -11,7 +11,7 @@ class Solution:
         while curr:
             nodes.append(curr.val)
             curr = curr.next
-            
+
         return nodes == nodes[::-1]
        
             
