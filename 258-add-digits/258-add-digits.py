@@ -1,10 +1,6 @@
 class Solution:
     def addDigits(self, num: int) -> int:
-        while num > 9:
-            curr = 0
-            while num > 0:
-                curr += num % 10
-                num //= 10
-            num = curr
-                
-        return num
+        if num == 0:
+            return 0
+        else:
+            return 9 if num%9 ==0 else num%9
