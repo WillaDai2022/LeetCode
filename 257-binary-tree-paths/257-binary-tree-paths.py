@@ -6,25 +6,31 @@
 #         self.right = right
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        return self.dfs(root, [], "")
+        paths = list()
+        
+        if not root:
+            return paths
 
-    
-    
-    def dfs(self, node, paths, path):
-        if node:
-            path += str(node.val)
-            if not node.left and not node.right:
+        node_queue = collections.deque([root])
+        path_queue = collections.deque([str(root.val)])
+        
+        while node_queue:
+            curr = node_queue.popleft()
+            path = path_queue.popleft()
+            
+            if not curr.left and not curr.right:
                 paths.append(path)
-            else:
-                path += "->"
-                self.dfs(node.left, paths, path)
-                self.dfs(node.right, paths, path)
+            
+            if curr.left:
+                node_queue.append(curr.left)
+                path_queue.append(path + "->" + str(curr.left.val))
                 
-        return paths
-
+            if curr.right:
+                node_queue.append(curr.right)
+                path_queue.append(path + "->" + str(curr.right.val))
         
        
-        
+        return paths
         
         
         
