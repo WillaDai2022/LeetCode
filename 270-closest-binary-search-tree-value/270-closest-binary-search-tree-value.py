@@ -5,24 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def closestValue(self, root: Optional[TreeNode], target: float) -> int:
-        if not root:
-            return false
-        node_queue = collections.deque([root])
-        min = abs(target - root.val)
-        res = root.val
+    def closestValue(self, root: Optional[TreeNode], target: float) -> int:    
+        self.min = abs(target - root.val)
+        self.val = root.val
         
-        while node_queue:
-            curr = node_queue.popleft()
-            if abs(target - curr.val) < min:
-                min = abs(target - curr.val)
-                res = curr.val
-                
+        def rec(node):
+            if not node: 
+                return False
+            if abs(node.val - target) < self.min:
+                self.min = abs(node.val - target)
+                self.val = node.val
+            rec(node.left)
+            rec(node.right)
             
-            if curr.left:
-                node_queue.append(curr.left)
-                
-            if curr.right:
-                node_queue.append(curr.right)
-        
-        return res
+        rec(root)
+        return self.val
