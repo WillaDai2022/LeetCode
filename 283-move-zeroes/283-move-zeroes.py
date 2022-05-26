@@ -3,8 +3,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        low = 0
-        high = 0
+        low = 0  
         
         for high in range(len(nums)):
             if nums[high] != 0:
