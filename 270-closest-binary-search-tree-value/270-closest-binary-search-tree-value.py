@@ -11,7 +11,7 @@ class Solution:
         
         def rec(node):
             if not node: 
-                return False
+                return
             if abs(node.val - target) < self.min:
                 self.min = abs(node.val - target)
                 self.val = node.val
