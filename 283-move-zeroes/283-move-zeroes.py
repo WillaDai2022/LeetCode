@@ -3,13 +3,10 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        low = 0  
-        
-        for high in range(len(nums)):
-            if nums[high] != 0:
-                nums[high], nums[low] = nums[low], nums[high]
-                low += 1
-                
+        for index in range(len(nums)):
+            if nums[index] == 0:
+                nums.remove(nums[index])
+                nums.append(0)
             
   
             
