@@ -3,20 +3,36 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        n = len(matrix)
-        m = len(matrix[0])
+        rows = len(matrix)
+        cols = len(matrix[0])
         
-        row = [False]*n
-        col = [False]*m
+        row0 = False
+        col0 = False
         
-        for i in range(n):
-            for j in range(m):
-                if matrix[i][j] == 0:
-                    row[i] = col[j] = True
+        for j in range(cols):
+            if matrix[0][j] == 0:
+                row0 = True
                 
-        for i in range(n):
-            for j in range(m):
-                if row[i] or col[j]:
+        for i in range(rows):
+            if matrix[i][0] == 0:
+                col0 = True
+        
+        for i in range(1, rows):
+            for j in range(1, cols):
+                if matrix[i][j] == 0:
+                    matrix[0][j] = matrix[i][0] = 0
+                
+        for i in range(1, rows):
+            for j in range(1, cols):
+                if matrix[0][j] == 0 or matrix[i][0] == 0:
                     matrix[i][j] = 0
-                    
+        
+        if row0:
+            for j in range(cols):
+                matrix[0][j] = 0
+                
+        if col0:
+            for i in range(rows):
+                matrix[i][0] = 0
+                
     
