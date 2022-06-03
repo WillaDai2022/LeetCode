@@ -4,10 +4,10 @@ class Solution:
         container = collections.defaultdict(list)
         
         for str in strs:
-            chars = [0]*26
-            for c in str:
-                chars[ord(c) - ord("a")] += 1
+            s = "".join(sorted(str))
             
-            container[tuple(chars)].append(str)
+            container[s].append(str)
             
         return list(container.values())
+            
+            
