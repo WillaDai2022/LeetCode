@@ -4,6 +4,7 @@ class Solution:
         longest = 0
         
         for num in num_set:
+            #check if it's the start of a sequence
             if (num-1) not in num_set:
                 length = 0
                 while (num+length) in num_set:
