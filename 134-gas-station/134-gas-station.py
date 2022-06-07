@@ -22,18 +22,18 @@ It is because we moved from A to B with some +ve value or atleast 0, whereas if 
 Part 4-- Why we just stop at point C and don t complete the cycle and check.
 It is because from Part 1 we would have already identified that if the given set of inputs will have an ans, so if we have reached to Part 3 it means we surely have an ans, and it is mentioned in the question that there is only one valid ans, so we will always choose the most favorable ans-- which is also the fundamental idea of Greedy Algorithims.
 """
-        
         if sum(gas) < sum(cost):
             return -1
         
-        total = 0
-        start = 0
+        curr_gas = 0
+        index = 0
+        
         for i in range(len(gas)):
-            total += (gas[i] - cost[i])
+            curr_gas += (gas[i] - cost[i])
             
-            if total < 0:
-                start = i + 1
-                total = 0
+            if curr_gas < 0:
+                curr_gas = 0
+                index = i + 1
                 
-        return start
-            
+        return index
+      
