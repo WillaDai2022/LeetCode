@@ -14,9 +14,9 @@ class Solution:
             queue.append((r,c))
             visited.add((r,c))
             
+            directions = [(1,0), (0,1), (-1,0), (0,-1)]
             while queue:
                 row, col = queue.popleft()
-                directions = [(1,0), (0,1), (-1,0), (0,-1)]
                 for m, n in directions:
                     r = m + row
                     c = n + col
