@@ -4,29 +4,28 @@ class Solution:
         Do not return anything, modify board in-place instead.
         """
         
-        #利用辅助copy board, 空间复杂度o(mn)
         rows = len(board)
         cols = len(board[0])
         
-      
-        neighbors = [(1,0), (1,-1), (0,-1), (-1,-1), (-1,0), (-1,1), (0,1), (1,1)]
-
-        
-        copy = [[board[r][c] for c in range(cols)] for r in range(rows)]
-        
+        #给格子周围除了格子本身值加10
+        def add_10(row,col):
+            for r in [row-1, row, row+1]:
+                for c in [col-1, col, col+1]:
+                    if r < 0 or r >= rows or c < 0 or c >= cols or(r == row and c == col):
+                        continue
+                    board[r][c] += 10
+                    
+        #遍历格子，如果数字取模10为1， 则其周围格子都增加10
         for row in range(rows):
             for col in range(cols):
-                
-                live_num = 0
-                
-                for neighbour in neighbors:
-                    r = row + neighbour[0]
-                    c = col + neighbour[1]
+                if board[row][col] % 10 == 1:
+                    add_10(row, col)
                     
-                    if 0 <= r < rows and 0 <= c < cols and copy[r][c] == 1:
-                        live_num += 1
-                    
-                if copy[row][col] == 1 and (live_num < 2 or live_num > 3):
-                    board[row][col] = 0
-                if copy[row][col] == 0 and live_num == 3:
+        for row in range(rows):
+            for col in range(cols):
+                if board[row][col]%10 == 1 and (board[row][col] // 10 == 2 or board[row][col] // 10 == 3):
                     board[row][col] = 1
+                elif board[row][col]%10 == 0 and (board[row][col] // 10 == 3):
+                    board[row][col] = 1
+                else:
+                    board[row][col] = 0
