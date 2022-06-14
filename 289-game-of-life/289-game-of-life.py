@@ -3,6 +3,8 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
+        
+        #利用辅助copy board, 空间复杂度o(mn)
         rows = len(board)
         cols = len(board[0])
         
