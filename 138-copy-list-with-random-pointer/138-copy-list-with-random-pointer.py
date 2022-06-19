@@ -12,7 +12,7 @@ class Solution:
         if not head:
             return head
         
-        old_copy = {}
+        old_copy = {None:None}
         
         curr = head
         
@@ -24,8 +24,8 @@ class Solution:
         curr = head
         while curr:
             copy = old_copy[curr]
-            copy.next = old_copy[curr.next] if curr.next else None
-            copy.random = old_copy[curr.random] if curr.random else None
+            copy.next = old_copy[curr.next]
+            copy.random = old_copy[curr.random]
             curr = curr.next
         
         return old_copy[head]
