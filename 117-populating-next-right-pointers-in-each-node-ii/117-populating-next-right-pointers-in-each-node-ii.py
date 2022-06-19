@@ -13,17 +13,32 @@ class Solution:
         if not root:
             return root
         
-        queue = collections.deque([root])
+        curr = root
+        head = None
+        connect = None
         
-        while queue:
-            size = len(queue)
-            for i in range(size):
-                curr = queue.popleft()
-                if i < size - 1:
-                    curr.next = queue[0]
+        while curr:
+            while curr:
                 if curr.left:
-                    queue.append(curr.left)
+                    if head == None:
+                        head = curr.left
+                        connect = curr.left
+                    else:
+                        connect.next = curr.left
+                        connect = connect.next
+                
                 if curr.right:
-                    queue.append(curr.right)
-                    
+                    if head == None:
+                        head = curr.right
+                        connect = curr.right
+                    else:
+                        connect.next = curr.right
+                        connect = connect.next
+                curr = curr.next
+                
+            curr = head
+            head = None
+            connect = None
+            
         return root
+                
