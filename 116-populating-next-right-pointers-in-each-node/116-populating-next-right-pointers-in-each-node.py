@@ -14,18 +14,16 @@ class Solution:
         if not root:
             return root
         
-        queue = collections.deque()
-        queue.append(root)
-        
-        while queue:
-            size = len(queue)
-            for i in range(size):
-                curr = queue.popleft()
-                if i < size -1:
-                    curr.next = queue[0]
+        curr = root
+        while curr:
+            head = curr
+            while curr:
                 if curr.left:
-                    queue.append(curr.left)
-                if curr.right:
-                    queue.append(curr.right)
-        return root
+                    curr.left.next = curr.right
+                if curr.right and curr.next:
+                    curr.right.next = curr.next.left
             
+                curr = curr.next
+            curr = head.left
+        
+        return root
