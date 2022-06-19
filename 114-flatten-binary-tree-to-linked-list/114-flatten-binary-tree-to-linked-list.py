@@ -5,6 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    pre = None;
     def flatten(self, root: Optional[TreeNode]) -> None:
         """
         Do not return anything, modify root in-place instead.
@@ -12,16 +13,8 @@ class Solution:
         if not root:
             return
         
-        stack = collections.deque()
-        stack.append(root)
-        
-        while stack:
-            curr = stack.pop()
-            if curr.right:
-                stack.append(curr.right)
-            if curr.left:
-                stack.append(curr.left)
-            
-            if stack:
-                curr.right = stack[-1]
-            curr.left = None
+        self.flatten(root.right)
+        self.flatten(root.left)
+        root.right = self.pre
+        root.left = None
+        self.pre = root
