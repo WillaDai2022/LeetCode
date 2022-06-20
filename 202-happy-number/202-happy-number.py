@@ -3,14 +3,16 @@ class Solution:
         seen = set()
         
         while n != 1:
-            sum = 0
-            while n > 0:
-                sum += (n%10) * (n%10)
+            total = 0
+            while n != 0:
+                total += (n%10)**2
                 n //= 10
                 
-            if sum in seen:
+            if total in seen:
                 return False
             
-            seen.add(sum)
-            n = sum
+            seen.add(total)
+            n = total
+            
         return True
+                
