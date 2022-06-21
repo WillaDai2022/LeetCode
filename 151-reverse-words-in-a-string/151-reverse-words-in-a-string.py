@@ -1,10 +1,30 @@
 class Solution:
     def reverseWords(self, s: str) -> str:
         
-        l = s.split()
+        left, right = 0, len(s)-1
+        
+        #remove the white space
+        while s[left] == " ":
+            left += 1
+            
+        while s[right] == " ":
+            right -= 1
+            
         res = ""
         
-        for i in range(len(l)-1, -1, -1):
-            res += (l[i] + " ")
+        while left <= right:
+            index = right
+            while index >= left and s[index] != " ":
+                index -= 1
+                
+            res += s[index + 1 : right + 1]
             
-        return res.strip()
+            if index > left:
+                res += " "
+            
+            while s[index] == " ":
+                index -= 1
+                
+            right = index
+        
+        return res
