@@ -12,9 +12,13 @@ class MyStack:
         self.queue2, self.queue1 = self.queue1, self.queue2
 
     def pop(self) -> int:
+        if self.empty():
+            return None
         return self.queue1.popleft()
 
     def top(self) -> int:
+        if self.empty():
+            return None
         return self.queue1[0]
 
     def empty(self) -> bool:
