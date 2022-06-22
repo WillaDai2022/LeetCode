@@ -1,25 +1,16 @@
 class TwoSum:
 
     def __init__(self):
-        self.container = []
+        self.container = {}
 
     def add(self, number: int) -> None:
-        self.container.append(number)
-        self.container.sort()
-
-    def find(self, value: int) -> bool:
-        left = 0
-        right = len(self.container) -1
+        self.container[number] = self.container.get(number, 0) + 1
         
-        while left < right:
-            if self.container[left] + self.container[right] == value:
+    def find(self, value: int) -> bool:
+        for key in self.container:
+            comp = value - key
+            if (comp == key and self.container[key] >= 2) or (comp != key and comp in self.container):
                 return True
-            
-            if self.container[left] + self.container[right] < value:
-                left += 1
-            else:
-                right -= 1
-                
         return False
 
 # Your TwoSum object will be instantiated and called as such:
