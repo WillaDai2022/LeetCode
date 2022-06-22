@@ -9,19 +9,18 @@ class MyQueue:
 
     def pop(self) -> int:
         #确保栈不为空
+        self.peek()   
+        return self.output_stack.pop()
+
+    def peek(self) -> int:
+        #确保栈不为空
         if self.empty():
             return None
         if not self.output_stack:
             while self.input_stack:
                 self.output_stack.append(self.input_stack.pop())
-                
-        return self.output_stack.pop()
-
-    def peek(self) -> int:
-        #确保栈不为空
-        res = self.pop()
-        self.output_stack.append(res)
         return self.output_stack[-1]
+    
 
     def empty(self) -> bool:
         
