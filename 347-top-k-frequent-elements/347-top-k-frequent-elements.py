@@ -15,6 +15,7 @@ class Solution:
                 heapq.heappop(pri_queue)
                 
         res = []
+        #in any order
         for i in range(len(pri_queue)-1, -1, -1):
             res.append(pri_queue.pop()[1])
             
