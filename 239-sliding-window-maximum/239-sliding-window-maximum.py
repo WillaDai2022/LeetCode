@@ -6,11 +6,13 @@ class Solution:
         
         left, right = 0, 0
         
+        #Maintain a decending monotonic queue
         while right < len(nums):
             while queue and nums[queue[-1]] < nums[right]:
                 queue.pop()
             queue.append(right)
             
+            #left if out of bound
             if left > queue[0]:
                 queue.popleft()
             
