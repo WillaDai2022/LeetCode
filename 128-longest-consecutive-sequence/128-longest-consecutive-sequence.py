@@ -5,7 +5,7 @@ class Solution:
         
         for n in nums:
             if (n-1) not in nums:
-                length = 0
+                length = 1
                 while (n + length) in nums:
                     length += 1
                     
