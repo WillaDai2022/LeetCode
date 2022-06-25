@@ -11,7 +11,7 @@ class Node:
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         if not root:
-            return root
+            return None
         
         curr = root
         head = None
@@ -26,7 +26,7 @@ class Solution:
                     else:
                         connect.next = curr.left
                         connect = connect.next
-                
+                    
                 if curr.right:
                     if head == None:
                         head = curr.right
@@ -35,10 +35,10 @@ class Solution:
                         connect.next = curr.right
                         connect = connect.next
                 curr = curr.next
-                
+            
             curr = head
-            head = None
-            connect = None
+            head = connect = None
             
         return root
+                        
                 
