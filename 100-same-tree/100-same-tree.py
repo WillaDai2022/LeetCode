@@ -10,19 +10,26 @@ class Solution:
         if not p and not q:
             return True
         
-        def helper(node1, node2):
+        from collections import deque
+        
+        queue = deque([p,q])
+    
+        
+        while queue:
+            node1 = queue.popleft()
+            node2 = queue.popleft()
+            
             if not node1 and not node2:
-                return True
+                continue
             
             if not node1 or not node2:
                 return False
-            
             if node1.val != node2.val:
                 return False
             
-            left = helper(node1.left, node2.left)
-            right = helper(node1.right, node2.right)
-            return left and right
-        
-        
-        return helper(p, q)
+            queue.append(node1.left)
+            queue.append(node2.left)
+            queue.append(node1.right)
+            queue.append(node2.right)
+            
+        return True
