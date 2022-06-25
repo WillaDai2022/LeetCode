@@ -7,6 +7,7 @@
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
         
+        # 超时递归
         if not root:
             return 0
         
