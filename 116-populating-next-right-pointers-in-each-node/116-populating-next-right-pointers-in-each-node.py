@@ -20,10 +20,11 @@ class Solution:
             while curr:
                 if curr.left:
                     curr.left.next = curr.right
-                if curr.right and curr.next:
+                if curr.next and curr.right:
                     curr.right.next = curr.next.left
-            
+
                 curr = curr.next
+                
             curr = head.left
-        
         return root
+            
