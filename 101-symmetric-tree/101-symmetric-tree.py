@@ -7,10 +7,9 @@
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if not root:
-            return true
+            return True
         
         def helper(node1, node2):
-            
             if not node1 and not node2:
                 return True
             
@@ -20,6 +19,10 @@ class Solution:
             if node1.val != node2.val:
                 return False
             
-            return helper(node1.left, node2.right) and helper(node1.right, node2.left)
+            outside = helper(node1.left, node2.right)
+            inside =  helper(node1.right, node2.left)
+            
+            is_same = outside and inside
+            return is_same
         
         return helper(root.left, root.right)
