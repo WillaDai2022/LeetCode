@@ -7,13 +7,24 @@
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
         
-        # 超时递归
         if not root:
             return 0
         
-        left_num = self.countNodes(root.left)
-        right_num = self.countNodes(root.right)
+        left = root.left
+        right = root.right
         
-        num = left_num + right_num + 1
+        left_height = 0
+        right_height = 0
         
-        return num
+        while left:
+            left_height += 1
+            left = left.left
+            
+        while right:
+            right_height += 1
+            right = right.right
+            
+        if left_height == right_height:
+            return (2 << left_height) - 1 #注意(2<<1) 相当于2^2，所以leftHeight初始为0
+        return self.countNodes(root.left)+ self.countNodes(root.right) + 1
+        
