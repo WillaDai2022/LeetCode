@@ -8,31 +8,27 @@ from collections import deque
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         paths = []
-        
         if not root:
             return paths
         
+        path = ""
         
-        node_q = deque([root])
-        path_q = deque([str(root.val)])
         
-        while node_q:
-            node = node_q.popleft()
-            path = path_q.popleft()
+        def preorder(node, path, paths):
+            path += str(node.val)
             
             if not node.left and not node.right:
                 paths.append(path)
-                
+    
+            
             if node.left:
-                node_q.append(node.left)
-                l_path = path + "->" + str(node.left.val)
-                path_q.append(l_path)
-                
+                preorder(node.left, path + "->", paths)
+            
             if node.right:
-                node_q.append(node.right)
-                r_path = path + "->" + str(node.right.val)
-                path_q.append(r_path)
-                
+                preorder(node.right, path + "->", paths)
+    
+        preorder(root, path, paths)
         return paths
+    
             
             
