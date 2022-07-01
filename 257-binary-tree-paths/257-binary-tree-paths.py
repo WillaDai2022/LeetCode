@@ -4,33 +4,35 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        paths = list()
+        paths = []
         
         if not root:
             return paths
-
-        node_queue = collections.deque([root])
-        path_queue = collections.deque([str(root.val)])
         
-        while node_queue:
-            curr = node_queue.popleft()
-            path = path_queue.popleft()
+        
+        node_q = deque([root])
+        path_q = deque([str(root.val)])
+        
+        while node_q:
+            node = node_q.popleft()
+            path = path_q.popleft()
             
-            if not curr.left and not curr.right:
+            if not node.left and not node.right:
                 paths.append(path)
-            
-            if curr.left:
-                node_queue.append(curr.left)
-                path_queue.append(path + "->" + str(curr.left.val))
                 
-            if curr.right:
-                node_queue.append(curr.right)
-                path_queue.append(path + "->" + str(curr.right.val))
-        
-       
+            if node.left:
+                node_q.append(node.left)
+                l_path = path + "->" + str(node.left.val)
+                path_q.append(l_path)
+                
+            if node.right:
+                node_q.append(node.right)
+                r_path = path + "->" + str(node.right.val)
+                path_q.append(r_path)
+                
         return paths
-        
-        
-        
+            
+            
