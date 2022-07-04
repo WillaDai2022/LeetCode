@@ -4,14 +4,27 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+from collections import deque
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
         
-        if root.left and not root.left.left and not root.left.right:
-            return root.left.val + self.sumOfLeftLeaves(root.right)
+        res = 0
+        stack = deque([root])
         
-        return self.sumOfLeftLeaves(root.left) + self.sumOfLeftLeaves(root.right)
-        
-        
+        while stack:
+            curr = stack.pop()
+            
+            if curr.left and not curr.left.left and not curr.left.right:
+                res += curr.left.val
+                
+            if curr.right:
+                stack.append(curr.right)
+                
+            if curr.left:
+                stack.append(curr.left)
+                
+    
+        return res
