@@ -4,11 +4,10 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+from collections import deque
 class Solution:
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
-        
-        if not root1 and not root2:
-            return None
         
         if not root1:
             return root2
@@ -16,9 +15,28 @@ class Solution:
         if not root2:
             return root1
         
-        root = TreeNode(root1.val + root2.val)
+        queue = deque([root1, root2])
         
-        root.left = self.mergeTrees(root1.left, root2.left)
-        root.right = self.mergeTrees(root1.right, root2.right)
         
-        return root
+        while queue:
+            
+            node1 = queue.popleft()
+            node2 = queue.popleft()
+            
+            if node1.left and node2.left:
+                queue.append(node1.left)
+                queue.append(node2.left)
+                
+            if node1.right and node2.right:
+                queue.append(node1.right)
+                queue.append(node2.right)
+                
+            node1.val += node2.val
+            
+            if not node1.left and node2.left:
+                node1.left = node2.left
+                
+            if not node1.right and node2.right:
+                node1.right = node2.right
+                
+        return root1
