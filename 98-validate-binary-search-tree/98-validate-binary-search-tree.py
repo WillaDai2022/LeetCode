@@ -7,24 +7,27 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        #方法二，将二叉树按照中序遍历转化为数组
-        #bst中序遍历应该得到一个升序数组
-      
-        nodes_val = []
+        #方法三，中序遍历迭代
         
-        def inorder(node):
-            if not node:
-                return 
+        queue = []
+        pre = None
+        
+        while queue or root:
+            while root:
+                queue.append(root)
+                root = root.left
+                
+            root = queue.pop()
             
-            inorder(node.left)
-            nodes_val.append(node.val)
-            inorder(node.right)
-            
-        def isValid(nodes):
-            for i in range(1,len(nodes)):
-                if nodes[i] <= nodes[i-1]:
+            if pre == None:
+                pre = root.val
+            else:
+                #中序遍历为升序
+                if pre >= root.val:
                     return False
-            return True
+                pre = root.val
+            root = root.right
+            
+        return True  
+      
         
-        inorder(root)
-        return isValid(nodes_val)
