@@ -7,18 +7,24 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        #bst的定义是左边节点值均小于节点，右边均大于
-        #注意陷阱，左边不仅小于其直接父母，也小于其爷爷，曾祖。。。
-        #left随着树向下不断变小，right则随着树向下不断增大
+        #方法二，将二叉树按照中序遍历转化为数组
+        #bst中序遍历应该得到一个升序数组
+      
+        nodes_val = []
         
-        def isBST(node, left, right):
-            
+        def inorder(node):
             if not node:
-                return True
+                return 
             
-            if not(left < node.val < right):
-                return False
+            inorder(node.left)
+            nodes_val.append(node.val)
+            inorder(node.right)
             
-            return isBST(node.left, left, node.val) and isBST(node.right, node.val, right)
+        def isValid(nodes):
+            for i in range(1,len(nodes)):
+                if nodes[i] <= nodes[i-1]:
+                    return False
+            return True
         
-        return isBST(root, float("-inf"), float("inf"))
+        inorder(root)
+        return isValid(nodes_val)
