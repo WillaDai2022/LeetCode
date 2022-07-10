@@ -8,21 +8,14 @@
 class Solution:
     def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]:
         
-        if not root:
-            return None
+        res = None
         
-        stack = []
-        found = False
-        
-        while stack or root:
-            while root:
-                stack.append(root)
+        while root:
+            if p.val < root.val:
+                res = root
                 root = root.left
-        
-            root = stack.pop()
-            if found:
-                return root
-            if root == p:
-                found = True
-            root = root.right
+            else:
+                root = root.right
+                
+        return res
             
