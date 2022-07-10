@@ -5,12 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    
-    def __init__(self):
-        self.max_sum = float("-inf")
+
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         
+        max_sum = float("-inf")
+        
         def dfs(root):
+            nonlocal max_sum
             if not root:
                 return 0
             
@@ -20,9 +21,9 @@ class Solution:
             
             curr_max = root.val + left_max + right_max
             
-            self.max_sum = max(self.max_sum, curr_max)
+            max_sum = max(max_sum, curr_max)
             return root.val + max(left_max, right_max)
         
         dfs(root)
         
-        return self.max_sum
+        return max_sum
