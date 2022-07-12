@@ -42,7 +42,7 @@ class Codec:
                 idx += 1
                 return None
             
-            root = TreeNode(vals[idx])
+            root = TreeNode(int(vals[idx]))
             idx += 1
             root.left = dfs()
             root.right = dfs()
