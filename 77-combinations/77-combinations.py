@@ -9,7 +9,8 @@ class Solution:
                 res.append(path[:])
                 return
             
-            for i in range(start_idx, n+1):
+            #剪枝优化
+            for i in range(start_idx, n-(k-len(path))+2):
                 path.append(i)
                 backtracking(n,k,i+1)
                 path.pop()
