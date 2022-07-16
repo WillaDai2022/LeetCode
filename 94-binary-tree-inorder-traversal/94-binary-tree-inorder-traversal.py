@@ -4,17 +4,22 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         
+        if not root:
+            return []
+        queue = deque()
         res = []
-        def helper(node, res):
-            if not node:
-                return
-            
-            helper(node.left, res)
-            res.append(node.val)
-            helper(node.right, res)
         
-        helper(root, res)
+        while queue or root:
+            if root:
+                queue.append(root)
+                root = root.left
+            else:
+                root = queue.pop()
+                res.append(root.val)
+                root = root.right
+                
         return res
