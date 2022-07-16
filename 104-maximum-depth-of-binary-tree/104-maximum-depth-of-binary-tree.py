@@ -9,17 +9,5 @@ class Solution:
         if not root:
             return 0
         
-        max_depth = 1
-        
-        def dfs(node, curr_depth):
-            nonlocal max_depth
-            if not node:
-                max_depth = max(max_depth, curr_depth-1)
-                return 
-            
-            dfs(node.left, curr_depth + 1)
-            dfs(node.right, curr_depth + 1)
-            
-        dfs(root, 1)
-        return max_depth
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
             
